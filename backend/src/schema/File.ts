@@ -10,5 +10,6 @@ export const File = objectType({
         t.model.size()
         t.model.duration()
         t.model.owner()
+        t.model.createdAt()
     }
 })

@@ -7,6 +7,7 @@ export const User = objectType({
         t.model.id()
         t.model.name()
         t.model.country()
+        t.model.createdAt()
         t.model.files({ type: "File" })
         //Custom fields
         //Total number of files

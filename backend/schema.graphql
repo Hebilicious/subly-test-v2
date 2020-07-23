@@ -16,6 +16,7 @@ input DateTimeFilter {
 }
 
 type File {
+  createdAt: DateTime!
   duration: Int!
   id: Int!
   name: String!
@@ -116,6 +117,7 @@ type User {
   averageFileDuration: Float
   averageFileSize: Float
   country: String!
+  createdAt: DateTime!
   files(after: FileWhereUniqueInput, before: FileWhereUniqueInput, first: Int, last: Int): [File!]!
   id: Int!
   name: String!
