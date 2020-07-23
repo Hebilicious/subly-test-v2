@@ -1,24 +1,13 @@
-import { makeSchema, objectType, queryType, arg } from "@nexus/schema"
+import { makeSchema } from "@nexus/schema"
 import { nexusSchemaPrisma } from "nexus-plugin-prisma/schema"
 import * as path from "path"
 
 import * as User from "./schema/User"
 import * as Query from "./schema/Query"
-
-const File = objectType({
-    name: "File",
-    definition(t) {
-        t.model.id()
-        t.model.name()
-        t.model.uuid()
-        t.model.type()
-        t.model.size()
-        t.model.duration()
-        t.model.owner()
-    }
-})
+import * as File from "./schema/File"
 
 const types = [User, File, Query]
+
 export const schema = makeSchema({
     types,
     plugins: [
