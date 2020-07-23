@@ -1,0 +1,34 @@
+  
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://subly:password@localhost:5432/subly?schema=public"
+}
+
+model User {
+  id Int @default(autoincrement()) @id
+  name String
+  country String @default("GB")
+  files File[]
+  createdAt DateTime @default(now())
+}
+
+model File {
+  id Int @default(autoincrement()) @id
+  name String
+  uuid String
+  type FileType 
+  duration Int
+  size Float
+  createdAt DateTime @default(now())
+  owner User @relation(fields:[ownerId], references:[id])
+  ownerId Int
+}
+
+enum FileType {
+  MP4
+  WAV
+}
