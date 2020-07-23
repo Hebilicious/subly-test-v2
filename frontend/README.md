@@ -47,6 +47,8 @@ Your app is ready to be deployed!
 
 **For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" or "@snowpack/plugin-parcel" to your `snowpack.config.json` config file.
 
-### Q: What about Eject
+## Deploy
 
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+This is just a static application, which are the simplest things to deploy.
+Once built, it is easily served, and doesn't require a server runtinme.
+Which means syncing the build directory with an s3 folder, or using netlify is trivial.

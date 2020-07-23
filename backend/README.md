@@ -67,7 +67,12 @@ Postgres is run using docker. Make sure you have docker and docker-compose on yo
 -   We're using a code-first approach with Apollo and the Nexus framework to generate our schema.graphql file from typescript. The Schema is defined in the schema.ts file. Think of Nexus as a higher level implementation of graphql-js, that comes with a prisma plugin to reduce a LOT of the typical CRUD boilerplate.
 -   Why do we need to `yarn generate` : The schema.graphql file is generated from the source code directly. This commands make sure the grqphql schema is in sync with the latest db schema. It also fixes the typescript "magic" in the schema file.
 -   Performances: Many things can be done to improve the raw performances of such a setup. This specific implementation worries more about code quality practises than it does about performances.
--   Nexus and Prisma are just libraries, therefore, this API is just an Apollo application that can be served like any node application. The entry point is server.ts. Locally it runs with `ts-node-dev`, but compiling it from TS to JS then running it with node / pm2 / docker / k8 etc would be painless. Since it's just a node application, it can easily be served by FAAS like AWS lambda, or served by a container with something like AWS fargate.
 -   We're using the Nexus-prisma plugin to "proxy" model definitions and CRUD methods easily. The prisma tools (cli, client) are bundled by nexus-prisma-plugin and need to be kept out of the dependencies.
 -   The test suite should tell you that you have everything setup properly `yarn test`
 -   Once the schema is built, you can use `yarn docs` to serve static docs
+
+## Deployment
+
+-   Server: Nexus and Prisma are just libraries, therefore, this API is just an Apollo application that can be served like any node application. The entry point is server.ts. Locally it runs with `ts-node-dev`, but compiling it from TS to JS then running it with node / pm2 / docker / k8 etc would be painless. Since it's just a node application, it can easily be served by FAAS like AWS lambda, or served by a container with something like AWS fargate. Or run it on an actual server (EC2/digital ocean) ...
+
+-   DB : The database would be a little bit tricker to deploy. Managed options such as Heroku are nice, something more serious like AWS RDS can get expensive very quickly. It's possible to run postgres in docker/k8 with local volumes too. Natively running on bare metal with EC2 is also an option.
